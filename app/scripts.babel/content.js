@@ -1,4 +1,5 @@
 let dayTimeMilli = -1;
+let dateNowKey = '';
 let nowDate = null;
 let initDate = null;
 let prevDate = null;
@@ -110,7 +111,7 @@ function showTime() {
 function onunloadEvent(e) {
 	clearTimeout(showTimeOut);
 	if (dayTimeMilli) {
-		chrome.runtime.sendMessage({ newDayTime: dayTimeMilli, requireDayTime: initDate.getTime() });
+		chrome.runtime.sendMessage({ newDayTime: dayTimeMilli, requireDayTime: initDate.getTime(), dateNowKey });
 	}
 }
 
@@ -131,8 +132,9 @@ function mousemoveEvent(e) {
 }
 
 function responseDayTime(response) {
-	const { dayTime, initDayTime } = response;
-	dayTimeMilli = dayTime || 0;
+	const { dayTime, initDayTime, dateNowKey: dateKey } = response;
+	dateNowKey = dateKey;
+	dayTimeMilli = dayTime;
 	if (initDayTime >= 0) {
 		dayTimeMilli += nowDate - initDayTime;
 	}

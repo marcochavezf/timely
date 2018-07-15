@@ -11,22 +11,24 @@ chrome.tabs.onUpdated.addListener(tabId => {
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  const { newDayTime, requireDayTime } = request;
+  const { newDayTime, requireDayTime, dateNowKey } = request;
   if (newDayTime) {
     activeTabs = activeTabs.filter(e => e !== requireDayTime);
     if (activeTabs.length > 0) {
       return;
     }
     initRequiredDayTime = -1;
-    chrome.storage.sync.set({dayTime: newDayTime}, function() {
-      console.log('Value is set to ' + newDayTime);
-    });
+    const storageObj = {};
+    storageObj[dateNowKey] = newDayTime;
+    chrome.storage.sync.set(storageObj);
   } else 
   if (requireDayTime) {
-    chrome.storage.sync.get(['dayTime'], function(result) {
-      const { dayTime } = result;
+    const dateNow = new Date();
+    const dateNowKey = `${dateNow.getFullYear()}-${dateNow.getMonth()}-${dateNow.getDate()}`;
+    chrome.storage.sync.get([dateNowKey], result => {
+      const dayTime = result[dateNowKey] || 0;
       activeTabs.push(requireDayTime);
-      sendResponse({ dayTime, initDayTime: initRequiredDayTime });
+      sendResponse({ dayTime, dateNowKey, initDayTime: initRequiredDayTime });
       if (initRequiredDayTime < 0) {
         initRequiredDayTime = requireDayTime;
       }
