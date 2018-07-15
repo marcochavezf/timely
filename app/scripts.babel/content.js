@@ -54,7 +54,7 @@ function getColor(value, maxValue) {
 }
 
 function getClockData(milliseconds, minutesTopColor) {
-	let width = 170;
+	let width = 153;
 	const dayInMilli = 1000 * 60 * 60 * 24;
 	milliseconds = milliseconds % dayInMilli;
 	let h = 0;
@@ -65,7 +65,7 @@ function getClockData(milliseconds, minutesTopColor) {
 	if (m >= 60) {
 		h = Math.trunc(m / 60);
 		m = Math.trunc(m % 60);
-		width = 220;
+		width = 203;
 	}
 
 	h = h < 0 ? '' : (h < 10) ? '0' + h : h;

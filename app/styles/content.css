@@ -4,20 +4,15 @@
   src: url('chrome-extension://__MSG_@@extension_id__/fonts/orbitron-bold.otf'); 
 }
 
-body {
-  background-image: url("https://i.ytimg.com/vi/SVSVvFiMQMA/maxresdefault.jpg") !important;
-  background-position: 0px -110px;
-}
-
 .timely-clock {
   position: fixed;
   z-index: 500000;
   top: 0;
   bottom: auto;
   font-size: 40px;
-  font-family: timely-font;
+  font-family: timely-font !important;
   text-align: center;
-  height: 50px;
+  height: 42px;
 }
 .timely-session-time {
   opacity: 0.75;

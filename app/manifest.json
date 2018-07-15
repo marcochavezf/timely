@@ -5,23 +5,36 @@
   "description": "__MSG_appDescription__",
   "icons": {
     "16": "images/icon-16.png",
+    "19": "images/icon-19.png",
+    "38": "images/icon-38.png",
     "128": "images/icon-128.png"
   },
+  "author": "Marco Chávez",
   "default_locale": "en",
   "background": {
     "scripts": [
+      "scripts/helpers.js",
+      "scripts/analytics.tracker.js",
       "scripts/chromereload.js",
       "scripts/background.js"
     ]
   },
   "permissions": [
+    "identity",
     "storage"
   ],
   "content_scripts": [{
     "css": ["styles/content.css"],
-    "js": ["scripts/content.js"],
-    "matches": ["https://blog.lateral.io/*"]
+    "js": [
+      "scripts/analytics.tracker.js",
+      "scripts/content.js"
+    ],
+    "matches": [
+      "https://facebook.com/*",
+      "https://www.facebook.com/*"
+    ]
   }],
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
   "web_accessible_resources": [
     "fonts/orbitron-bold.otf"
   ]
