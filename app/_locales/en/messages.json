@@ -1,10 +1,8 @@
 {
   "appName": {
-    "message": "Timely",
-    "description": "The name of the application"
+    "message": "Timely"
   },
   "appDescription": {
-    "message": "Anti-procrastination chrome extension for Facebook",
-    "description": "The description of the application"
+    "message": "Anti-procrastination chrome extension for Facebook"
   }
 }
