@@ -11,6 +11,7 @@ gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
     'app/_locales/**',
+    'app/fonts/**',
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
@@ -97,6 +98,7 @@ gulp.task('watch', ['lint', 'babel'], () => {
     'app/scripts/**/*.js',
     'app/images/**/*',
     'app/styles/**/*',
+    'app/fonts/**/*',
     'app/_locales/**/*.json'
   ]).on('change', $.livereload.reload);
 
